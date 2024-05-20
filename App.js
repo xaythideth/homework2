@@ -1,21 +1,34 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, Button } from 'react-native';
 
-export default function App() {
+const DisplayCounter = (props) => {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+    <View>
+      <Text>ທ້າວໄຊທິດດ ສູລິວົງ 2CW1</Text>
+      <Text>{props.counter}</Text>
     </View>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+const CounterApp = () => {
+  const [counter, setCounter] = useState(0);
+
+  const incrementCounter = () => {
+    setCounter(counter + 1);
+  };
+
+  const decrementCounter = () => {
+    setCounter(counter - 1);
+  };
+
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <DisplayCounter counter={counter} />
+      <Button title="ກົດບວກ" onPress={incrementCounter} />
+  
+      <Button title="ກົດລົບ" onPress={decrementCounter} />
+    </View>
+  );
+};
+
+export default CounterApp;
